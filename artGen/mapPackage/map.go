@@ -35,12 +35,6 @@ func AsciiMapping(patternFile string) map[rune][]string {
 
 		splitted = strings.Split(string(testfile), "\n")
 	}
-
-	// if len(splitted) != 856 {
-	// 	fmt.Printf("error : %v file modified, exiting...\n", patternFile)
-	// 	os.Exit(1)
-	// }
-
 	asciiMapping := make(map[rune][]string)
 	startAscii := ' '
 	for i := 1; i < len(splitted); {

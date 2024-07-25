@@ -11,6 +11,15 @@ import (
 func AsciiMapping(patternFile string) (map[rune][]string, error) {
 	var splitted []string
 
+	switch patternFile {
+	case "standard":
+		patternFile = "banners/standard.txt"
+	case "shadow":
+		patternFile = "banners/shadow.txt"
+	case "thinkertoy":
+		patternFile = "banners/thinkertoy.txt"
+	}
+
 	textFile, err := os.ReadFile(patternFile)
 	if err != nil {
 		return nil, err
@@ -22,7 +31,7 @@ func AsciiMapping(patternFile string) (map[rune][]string, error) {
 	}
 
 	switch patternFile {
-	case "thinkertoy.txt":
+	case "banners/thinkertoy.txt":
 		splitted = strings.Split(string(textFile), "\r\n") // strings of thinkeratoi are seperated by \r\n [13,10]
 	default:
 		splitted = strings.Split(string(textFile), "\n")

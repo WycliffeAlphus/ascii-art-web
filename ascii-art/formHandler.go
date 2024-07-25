@@ -45,11 +45,12 @@ func FormHandler(w http.ResponseWriter, r *http.Request) {
 		inputText := r.FormValue("inputText")
 		banner := r.FormValue("banner")
 
-		// inputText, err := artgen.HandleInput(inputText)
-		// if err != nil {
-		// 	fmt.Println("Error;",err)
+		inputText, err := artgen.HandleInput(inputText)
+		if err != nil {
+			fmt.Println("Error;",err)
 
-		// }
+		}
+
 		if inputText == "" || banner == "" {
 			http.Error(w, "400 bad request", http.StatusBadRequest)
 			return

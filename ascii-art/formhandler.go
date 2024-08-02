@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
-	"os"
 
 	"ascii-art-web/artgen"
 )
@@ -15,37 +14,38 @@ type FormData struct {
 	ASCIIArt  string
 	Error     string
 }
-
-var tmpl *template.Template
-
-func init() {
-	var err error
-
-	tmpl, err = template.ParseFiles("templates/form.html")
+// GetHandler handles get requests
+func GetHandler(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("templates/form.html")
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		http.Error(w, "404 Not Found", http.StatusNotFound)
+		return
+	}
+	if r.URL.Path != "/" {
+		http.NotFound(w, r)
+		return
+	}
+	if r.Method == http.MethodGet {
+		err := tmpl.Execute(w, nil)
+		if err != nil {
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
+			return
+		}
 	}
 }
 
 // FormHandler handles form submissions.
 func FormHandler(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" {
-		http.NotFound(w, r)
+	tmpl, err := template.ParseFiles("templates/form.html")
+	if err != nil {
+		http.Error(w, "404 Not Found", http.StatusNotFound)
 		return
 	}
-
 	if r.Method != http.MethodGet && r.Method != http.MethodPost {
 		http.Error(w, "405 Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
 
-	if r.Method == http.MethodGet {
-		err := tmpl.Execute(w, nil)
-		if err != nil {
-			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
-		}
-	}
 	if r.Method == http.MethodPost {
 
 		inputText := r.FormValue("inputText")

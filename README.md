@@ -45,31 +45,11 @@ You can access it by navigating to `http://localhost:8081` in your web browser.
         + 400 Bad Request: For invalid form submissions.
         + 500 Internal Server Error: For unexpected errors.
 
-## File System
-
-```
-|-banners
-|   |-standard.txt
-|   |-shadow.txt
-|   |_thinkertoy.txt
-|-static
-|-artgen
-|   |-map.go
-|   |_printingascii.go
-|-ascii-art
-|   |_formHandler.go
-|-templates
-|   |-style.css
-|   |_form.html
-|-main.go
-|-README.md
-```
-
-
 ## Authors
-+ Wycliffe Onyango
-+ Fred Gitonga
++[Wycliffe Onyango](https://github.com/WycliffeAlphus)
+
++[Fred Gitonga](https://github.com/FredMunene)
 
 ## Issues
 
-If you encounter any issues or have suggestions for improvements, please submit an issue or propose changes via the repository.
+If you encounter any issues or have suggestions for improvements, please submit an issue or propose changes via a pull request in the repository.

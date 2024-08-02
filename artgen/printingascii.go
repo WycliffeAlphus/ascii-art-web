@@ -8,23 +8,35 @@ import (
 // Reads input text,gets the pattern convert it to ascii art
 func PrintingAscii(text, patternFile string) (string, error) {
 	res := ""
+	lines := strings.Split(text, "\\n")
 	asciiMap, err := AsciiMapping(patternFile)
 	if err != nil {
 		return "", err
 	}
 
-	for n := 0; n < 8; n++ {
-		for _, ch := range text {
-			res += asciiMap[ch][n]
+	count := 0
+
+	for _, word := range lines { // case of multiple newlines
+		if word == "" {
+			count++
+			if count < len(lines) {
+				res += "\n"
+			}
+		} else {
+			for n := 0; n < 8; n++ {
+				for _, ch := range word {
+					res += asciiMap[ch][n]
+				}
+				res += "\n"
+			}
 		}
-		res += "\n"
 	}
 
 	return res, nil
 }
 
 func HandleInput(text string) (string, error) {
-	//text = strings.ReplaceAll(text, "\n", "\\n")
+	text = strings.ReplaceAll(text, "\n", "\\n")
 	text = strings.ReplaceAll(text, "\r", "")
 
 	for _, char := range text {

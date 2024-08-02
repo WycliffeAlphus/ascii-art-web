@@ -23,7 +23,7 @@ func init() {
 
 	tmpl, err = template.ParseFiles("templates/form.html")
 	if err != nil {
-		fmt.Println( err)
+		fmt.Println(err)
 		os.Exit(1)
 	}
 }
@@ -34,6 +34,12 @@ func FormHandler(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
+
+	if r.Method != http.MethodGet && r.Method != http.MethodPost {
+		http.Error(w, "405 Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
 	if r.Method == http.MethodGet {
 		err := tmpl.Execute(w, nil)
 		if err != nil {
@@ -69,7 +75,7 @@ func FormHandler(w http.ResponseWriter, r *http.Request) {
 
 		err = tmpl.Execute(w, formData)
 		if err != nil {
-			http.Error(w, "Internal Server Error: ", http.StatusInternalServerError)
+			http.Error(w, "500 Internal Server Error", http.StatusInternalServerError)
 		}
 	}
 }

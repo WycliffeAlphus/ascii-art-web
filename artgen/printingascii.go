@@ -36,10 +36,9 @@ func PrintingAscii(text, patternFile string) (string, error) {
 }
 
 func HandleInput(text string) (string, error) {
-	println(text)
-	//text = strings.ReplaceAll(text, "\n", "\\n")
+
 	text = strings.ReplaceAll(text, "\r", "")
-	println(text)
+
 	for _, char := range text {
 		if char < 32 || char > 126 {
 			if char == 10 || char == 13 {

@@ -3,7 +3,7 @@ package banners
 import (
 	"crypto/sha1"
 )
-
+// IsValidBanner ensures that banner files are not tampered with
 func IsValidBanner(patternFile string, textFile []byte) bool {
 	if patternFile == "shadow" && sha1.Sum(textFile) != [20]byte{88, 40, 71, 6, 150, 77, 77, 228, 230, 34, 145, 25, 177, 146, 82, 213, 194, 159, 105, 87} {
 		return false

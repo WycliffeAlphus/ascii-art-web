@@ -1,7 +1,7 @@
 # ASCII-ART-WEB
 
 ## Description
-Ascii-art-web is a web application that provides a graphical user interface for generating ASCII art using different banners. The server allows users to input text, select a banner style, and submit a request to generate ASCII art. The generated ASCII art can be displayed on the same page as per our implementation.
+Ascii-art-web is a web application that provides a graphical user interface for generating ASCII art using different banners. The server allows users to input text, select a banner style, and submit a request to generate ASCII art. The generated ASCII art is redirected to the '/ascii-art' page as per our implementation.
 
 
 

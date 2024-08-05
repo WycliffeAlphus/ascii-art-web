@@ -14,29 +14,21 @@ func PrintingAscii(text, patternFile string) (string, error) {
 		return "", err
 	}
 
-	count := 0
-
 	for _, word := range lines { // case of multiple newlines
-		if word == "" {
-			count++
-			if count < len(lines) {
-				res += "\n"
+
+		for n := 0; n < 8; n++ {
+			for _, ch := range word {
+				res += asciiMap[ch][n]
 			}
-		} else {
-			for n := 0; n < 8; n++ {
-				for _, ch := range word {
-					res += asciiMap[ch][n]
-				}
-				res += "\n"
-			}
+			res += "\n"
 		}
 	}
 
 	return res, nil
 }
+
 // HandleInput ensures that the text contains only printable characters
 func HandleInput(text string) (string, error) {
-
 	text = strings.ReplaceAll(text, "\r", "")
 
 	for _, char := range text {

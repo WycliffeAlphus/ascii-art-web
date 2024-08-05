@@ -14,6 +14,7 @@ type FormData struct {
 	ASCIIArt  string
 	Error     string
 }
+
 // GetHandler handles get requests
 func GetHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("templates/form.html")
@@ -41,7 +42,7 @@ func FormHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "404 Not Found", http.StatusNotFound)
 		return
 	}
-	if r.Method != http.MethodGet && r.Method != http.MethodPost {
+	if r.Method != http.MethodPost {
 		http.Error(w, "405 Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
@@ -64,6 +65,7 @@ func FormHandler(w http.ResponseWriter, r *http.Request) {
 		asciiArt, err := artgen.PrintingAscii(inputText, banner)
 		if err != nil {
 			http.Error(w, "404 Not Found", http.StatusNotFound)
+			fmt.Println(err)
 			return
 		}
 

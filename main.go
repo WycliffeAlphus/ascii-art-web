@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	asciiart "ascii-art-web/ascii-art"
+	asciiart "ascii-art-web/handler"
 )
 
 func main() {

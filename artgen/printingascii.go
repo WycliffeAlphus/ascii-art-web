@@ -34,7 +34,7 @@ func PrintingAscii(text, patternFile string) (string, error) {
 
 	return res, nil
 }
-
+// HandleInput ensures that the text contains only printable characters
 func HandleInput(text string) (string, error) {
 
 	text = strings.ReplaceAll(text, "\r", "")
